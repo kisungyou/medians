@@ -5,8 +5,7 @@ Version: 0.1.0
 Authors@R: person("Kisung", "You", role = c("aut", "cre"), email = "kisungyou@outlook.com")
 Description: More about what it does (maybe more than one line).
 License: MIT + file LICENSE
-Suggests: tinytest
 Encoding: UTF-8
 RoxygenNote: 7.3.2
-Imports: Rcpp (>= 1.0.13), RcppArmadillo, Rdpack, stats, utils
+Imports: Rcpp (>= 1.0.13), RcppArmadillo, Rdpack,stats, utils
 LinkingTo: Rcpp, RcppArmadillo

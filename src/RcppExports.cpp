@@ -11,6 +11,45 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
+// aux_row_normalize
+arma::mat aux_row_normalize(arma::mat& X);
+RcppExport SEXP _medians_aux_row_normalize(SEXP XSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat& >::type X(XSEXP);
+    rcpp_result_gen = Rcpp::wrap(aux_row_normalize(X));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_geometric_sphere_int
+arma::rowvec cpp_geometric_sphere_int(arma::mat& X, arma::vec weights, int maxiter, double abstol);
+RcppExport SEXP _medians_cpp_geometric_sphere_int(SEXP XSEXP, SEXP weightsSEXP, SEXP maxiterSEXP, SEXP abstolSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type weights(weightsSEXP);
+    Rcpp::traits::input_parameter< int >::type maxiter(maxiterSEXP);
+    Rcpp::traits::input_parameter< double >::type abstol(abstolSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_geometric_sphere_int(X, weights, maxiter, abstol));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_geometric_sphere_ext
+arma::rowvec cpp_geometric_sphere_ext(arma::mat& X, arma::vec weights, int maxiter, double abstol);
+RcppExport SEXP _medians_cpp_geometric_sphere_ext(SEXP XSEXP, SEXP weightsSEXP, SEXP maxiterSEXP, SEXP abstolSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< arma::mat& >::type X(XSEXP);
+    Rcpp::traits::input_parameter< arma::vec >::type weights(weightsSEXP);
+    Rcpp::traits::input_parameter< int >::type maxiter(maxiterSEXP);
+    Rcpp::traits::input_parameter< double >::type abstol(abstolSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_geometric_sphere_ext(X, weights, maxiter, abstol));
+    return rcpp_result_gen;
+END_RCPP
+}
 // cpp_geometric_euclidean
 arma::rowvec cpp_geometric_euclidean(arma::mat& X, arma::vec weights, int maxiter, double abstol);
 RcppExport SEXP _medians_cpp_geometric_euclidean(SEXP XSEXP, SEXP weightsSEXP, SEXP maxiterSEXP, SEXP abstolSEXP) {
@@ -41,6 +80,9 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_medians_aux_row_normalize", (DL_FUNC) &_medians_aux_row_normalize, 1},
+    {"_medians_cpp_geometric_sphere_int", (DL_FUNC) &_medians_cpp_geometric_sphere_int, 4},
+    {"_medians_cpp_geometric_sphere_ext", (DL_FUNC) &_medians_cpp_geometric_sphere_ext, 4},
     {"_medians_cpp_geometric_euclidean", (DL_FUNC) &_medians_cpp_geometric_euclidean, 4},
     {"_medians_cpp_geometric_grassmann", (DL_FUNC) &_medians_cpp_geometric_grassmann, 4},
     {NULL, NULL, 0}

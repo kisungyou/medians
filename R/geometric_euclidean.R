@@ -32,7 +32,7 @@
 #' 
 #' ## compute L1-median and L2-mean
 #' vecL2 = base::colMeans(Y)
-#' vecL1 = median_euclidean(Y)$solution
+#' vecL1 = gmed_euclidean(Y)$solution
 #' 
 #' ## compute deviation from the signal
 #' signal = sin(X)
@@ -48,8 +48,9 @@
 #' par(opar)
 #' }
 #' 
+#' @concept geometric
 #' @export
-median_euclidean <- function(X, weights=NULL, ...){
+gmed_euclidean <- function(X, weights=NULL, ...){
   ###############################################
   # Preprocessing
   if (is.vector(X)){
@@ -63,10 +64,10 @@ median_euclidean <- function(X, weights=NULL, ...){
     par_weights = rep(1/n, n)
   } else {
     if ((!is.vector(weights))||(length(weights)!=n)){
-      stop(paste0("* median_euclidean : 'weights' should be a vector of length ",n))
+      stop(paste0("* gmed_euclidean : 'weights' should be a vector of length ",n))
     }
-    if (any(weights) <= 0){
-      stop(paste0("* median_euclidean : 'weights' should have nonnegative values."))
+    if (any(weights <= 0)){
+      stop(paste0("* gmed_euclidean : 'weights' should have nonnegative values."))
     }
     par_weights = weights/base::sum(weights);
   }

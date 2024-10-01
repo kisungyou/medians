@@ -1,4 +1,4 @@
-#' Geometric Median in Grassmann Manifold
+#' Geometric Median on Grassmann Manifold
 #' 
 #' Grassmann manifold \eqn{Gr(p,k)} is a collection of \eqn{k}-dimensional subspaces in \eqn{\mathbb{R}^p}. 
 #' For a collection of \eqn{k}-frames, it computes a weighted version of the geometric median 
@@ -39,7 +39,7 @@
 #' }
 #' 
 #' ## compute geometric median
-#' grmed = median_grassmann(proj3)
+#' grmed = gmed_grassmann(proj3)
 #' proj_gmed = grmed$solution
 #' 
 #' ## compute PCA for the original data
@@ -53,15 +53,16 @@
 #' par(opar)
 #' }
 #' 
+#' @concept geometry
 #' @export
-median_grassmann <- function(X, weights=NULL, ...){
+gmed_grassmann <- function(X, weights=NULL, ...){
   ###############################################
   # Preprocessing
   if (!is.array(X)){
-    stop("* median_grassmann: 'X' should be an array.")
+    stop("* gmed_grassmann: 'X' should be an array.")
   }
   if (length(dim(X))!=3){
-    stop("* median_grassmann: 'X' should be a 3-dimensional array.")
+    stop("* gmed_grassmann: 'X' should be a 3-dimensional array.")
   }
   n = dim(X)[3]
 
@@ -70,10 +71,10 @@ median_grassmann <- function(X, weights=NULL, ...){
     par_weights = rep(1/n, n)
   } else {
     if ((!is.vector(weights))||(length(weights)!=n)){
-      stop(paste0("* median_grassmann : 'weights' should be a vector of length ",n))
+      stop(paste0("* gmed_grassmann : 'weights' should be a vector of length ",n))
     }
-    if (any(weights) <= 0){
-      stop(paste0("* median_grassmann : 'weights' should have nonnegative values."))
+    if (any(weights <= 0)){
+      stop(paste0("* gmed_grassmann : 'weights' should have nonnegative values."))
     }
     par_weights = weights/base::sum(weights);
   }
